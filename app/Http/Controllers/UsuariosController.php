@@ -55,6 +55,8 @@ class UsuariosController extends Controller
         $u->estado = $estado;
         $u->save();
 
+        session()->flash('mensagem', "O usuário {$u->nome} foi alterado com sucesso");
+
         return redirect()->route('usuario_lista');
     }
 
