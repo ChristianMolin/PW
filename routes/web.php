@@ -19,16 +19,25 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [UsuariosController::class, 'exibeLogin']);
+
 Route::post('/tenta_login', [UsuariosController::class, 'tentaLogin']);
 
+Route::middleware('auth')->group(function(){
 
-Route::get('/usuario/novo', [UsuariosController::class, 'novo'])->name('usuario_novo');
-Route::post('/usuario/inserir', [UsuariosController::class, 'inserir'])->name('usuario_inserir');
+    Route::get('/usuario/novo', [UsuariosController::class, 'novo'])->name('usuario_novo');
 
-Route::get('/usuario/editar/{id}', [UsuariosController::class, 'editar'])->name('usuario_editar');
-Route::post('/usuario/alterar/{id}', [UsuariosController::class, 'alterar'])->name('usuario_alterar');
+    Route::post('/usuario/inserir', [UsuariosController::class, 'inserir'])->name('usuario_inserir');
+    
+    Route::get('/usuario/editar/{id}', [UsuariosController::class, 'editar'])->name('usuario_editar');
 
-Route::get('/usuario/excluir/{id}', [UsuariosController::class, 'excluir'])->name('usuario_excluir');
+    Route::post('/usuario/alterar/{id}', [UsuariosController::class, 'alterar'])->name('usuario_alterar');
+    
+    Route::get('/usuario/excluir/{id}', [UsuariosController::class, 'excluir'])->name('usuario_excluir');
+    
+    Route::get('/usuario/lista', [UsuariosController::class, 'tela_principal'])->name('usuario_lista');
 
+});
 
-Route::get('/usuario/lista', [UsuariosController::class, 'tela_principal'])->name('usuario_lista');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

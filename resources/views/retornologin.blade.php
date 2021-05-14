@@ -30,7 +30,7 @@
             <a 
             href="{{ route('usuario_editar', ['id' => $u->id]) }}" class="btn btn-info">Alterar</a> 
 
-            <a href="#" onclick="excluir({{ $u->id }})" class="btn btn-danger">Excluir</a>
+            <a href="{{ route('usuario_excluir', ['id' => $u->id]) }}" onclick="excluir({{ $u->id }})" class="btn btn-danger">Excluir</a>
           </td>
       </tr>
       @endforeach
